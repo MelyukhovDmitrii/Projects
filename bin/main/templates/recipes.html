@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    <title>Title</title>
+    <script type="text/javascript" src="js/clientAjax.js" th:inline="javascript"></script>
+    <link rel="stylesheet" type="text/css" href="css/stile.css">
+
+</head>
+<script type="text/javascript" th:inline="javascript">
+	var author = [[#{author.author}]];
+	var recipe = [[#{recipe.recipe}]];
+	var dish = [[#{name.name}]];
+</script>
+<body>
+    <header class="www">
+        <div class = "title" th:text="#{tittle.tittle}">Книга рецептов</div>
+        <div>
+            <div sec:authorize="isAnonymous()" >
+                <a href="/login" th:text="#{login.login}">Login</a>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <a href="/login?logout" th:text="#{login.logout}">Logout</a>
+            </div>
+        </div>
+    </header>
+<table id="recipes" class = "recipes">
+    <tr>
+        <th width='10%' style='text-align: center' th:text="#{author.author}"></th>
+        <th width='10%' style='text-align: center' th:text="#{name.name}"></th>
+        <th width='80%' th:text="#{recipe.recipe}"></th>
+    </tr>
+    <td>
+        
+        <div class="rrr" id="rrr"></div>
+    </td>
+    <td>
+        <div class="aaa" id="aaa"></div>
+    </td>
+    <td>
+        <div class="zzz" id="zzz"></div>
+    </td>
+</table>
+<div sec:authorize="isAuthenticated()"></div>
+<form action="#modal">
+    <div sec:authorize="isAuthenticated()">
+        <input type="submit" th:value="#{recipe.addrec}"  value="Добавить рецепт" style="right: 10px">
+    </div>
+</form>
+<aside class="modal" id="modal" >
+    <header>
+        <h2 th:text="#{recipe.addnew}"></h2>
+    </header>
+    <form class="newRecipe" id="send"  method="post" action="http://localhost:8080/recipes/"></form>
+    <section>
+        <table>
+            <tr><td th:text="#{author.author}"></td></tr>
+            <tr><td><input type="text" name="fullName" id="FullName" form="send"></td></tr>
+            <tr><td th:text="#{name.name}"></td></tr>
+            <tr><td><input type="text" name="nameOfTheDish" id ="NameOfTheDish" form="send"></td></tr>
+            <tr><td th:text="#{recipe.recipe}"></td></tr>
+            <tr><td><textarea name="recipe" id="Recipe" form="send" class="textRecipe" ></textarea></td></tr>
+            <tr><td><input type='submit' th:value="#{recipe.send}" form="send"></td></tr>
+        </table>
+    </section>
+    <footer class="footer">
+        <a href="#" class="btn" th:text="#{close.close}">Закрыть</a>
+    </footer>
+</aside>
+<form action="#change" id="recipeChange"></form>
+<aside class="modal" id="change" >
+    <header>
+        <h2 th:text="#{recipe.addnew}"></h2>
+    </header>
+    <form class="changeRecipe" id="changeRecipe"  method="post" action="http://localhost:8080/recipes/"></form>
+    <section>
+        <table>
+            <tr><td th:text="#{author.author}"></td></tr>
+            <tr><td><input type="text" name="fullName" id="Name" form="recipeChange"></td></tr>
+            <tr><td th:text="#{name.name}"></td></tr>
+            <tr><td><input type="text" name="nameOfTheDish" id ="Dish" form="recipeChange"></td></tr>
+            <tr><td th:text="#{recipe.recipe}"></td></tr>
+            <tr><td><textarea name="recipe" id="Recip" form="recipeChange" class="textRecipe"></textarea></td></tr>
+            <tr><td><input type='submit' th:value="#{recipe.send}" form="recipeChange"></td></tr>
+        </table>
+    </section>
+    <footer class="footer">
+        <a href="#" class="btn" th:text="#{close.close}">Закрыть</a>
+    </footer>
+</aside>
+</div>
+    
+<div sec:authorize="isAnonymous()">
+<script type="text/javascript" th:inline="javascript" >
+    var numberGetData = 1;
+</script>
+</div>
+<script type="text/javascript" th:inline="javascript">
+	var author = [[#{author.author}]];
+	var recipe = [[#{recipe.recipe}]];
+	var dish = [[#{name.name}]];
+</script>
+<div sec:authorize="isAuthenticated()">
+<script type="text/javascript" th:inline="javascript">
+    var numberGetData = 2;
+</script>
+</div>
+</body>
+</html>
