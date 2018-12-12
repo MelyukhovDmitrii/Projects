@@ -1,4 +1,4 @@
-package me.melyukhov.lab4;
+package me.melyukhov.SpringProject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class Lab4ApplicationTests {
+public class SpringProjectTests {
 
 	@Test
 	public void contextLoads() {
