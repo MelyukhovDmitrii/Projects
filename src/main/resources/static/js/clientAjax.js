@@ -5,6 +5,8 @@ $(document).ready(function () {
 var numberGetData = 0;
 
 var author = "Author";
+var strDelete = "Delete";
+var strChange = "Change";
 
 function getData() {
     if (numberGetData == 1) getData1();
@@ -33,8 +35,8 @@ function getData2() {
         for (key in data) { 
             arrayId.push(data[key].id);
             out += ("<tr><td style='text-align: center'>" + data[key].fullName + "</td><td style='text-align: center'>" + data[key].nameOfTheDish + "</td><td>" + data[key].recipe + "</td>" +
-                "<td><button class='delete' value='" + key + "'>Delete</button></td>" +
-                "<td><button class='change' value='" + key + "'>Change</button></td></tr>>");
+                "<td><button class='delete' value='" + key + "'>" + strDelete + "</button></td>" +
+                "<td><button class='change' value='" + key + "'>" + strChange + "</button></td></tr>>");
         };
         $(".recipes").html(out);
     })
