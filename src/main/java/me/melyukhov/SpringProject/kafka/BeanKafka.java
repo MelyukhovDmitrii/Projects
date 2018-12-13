@@ -25,6 +25,7 @@ public class BeanKafka implements IBeanKafka {
 		this.template = template;
 	}
 	
+	@Override
 	@KafkaListener(topics= {TOPIC})
 	public void listener(Message message) {
 		if(message.command == Command.DELETE) {
@@ -34,10 +35,12 @@ public class BeanKafka implements IBeanKafka {
 		}
 	}
 	
+	@Override
 	public void send(Message message) {
 		template.send(TOPIC, message);
 	}
 	
+	@Override
 	public void delete(int id) {
 		Message message = new Message(new Data(id), Command.DELETE);
 		template.send(TOPIC, message);

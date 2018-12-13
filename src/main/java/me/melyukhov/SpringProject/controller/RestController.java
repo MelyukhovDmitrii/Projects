@@ -55,6 +55,7 @@ public class RestController {
 			if(dataServiceKafka.findById(id).isPresent()) {
 				Data stored = data;
 				stored.setId(id);
+				dataServiceKafka.deleteById(id);
 				dataServiceKafka.save(stored);
 				return ResponseEntity.status(HttpStatus.OK).header("Content-Type", "text/plain; charset=utf-8").build();
 			} else {
